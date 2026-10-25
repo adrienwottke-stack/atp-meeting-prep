@@ -5,7 +5,7 @@ Anwendung für quellenbasierte Firmenrecherche und strukturierte Gesprächsvorbe
 
 ## Projekt und Beitrag
 
-Portfolio-Arbeitsprobe von Adrien Thielemann, Maschinenbaustudent mit Interesse an Engineering, Software und praktischen KI-Anwendungen. Der gezeigte Stand entstand unter Einsatz von KI-Werkzeugen. Vorgefertigte Frameworks und Drittanbieter-Komponenten bleiben Beiträge ihrer jeweiligen Urheber.
+Portfolio-Arbeitsprobe von Adrien Wottke, Maschinenbaustudent mit Interesse an Engineering, Software und praktischen KI-Anwendungen. Der gezeigte Stand entstand unter Einsatz von KI-Werkzeugen. Vorgefertigte Frameworks und Drittanbieter-Komponenten bleiben Beiträge ihrer jeweiligen Urheber.
 
 **Technologien:** Python, FastAPI, PostgreSQL, Supabase.
 
