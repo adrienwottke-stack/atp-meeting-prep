@@ -1,0 +1,3 @@
+-- Auth users, memberships and an explicitly activated development profile are
+-- created by scripts/setup_local.ps1 through the local Auth admin API.
+-- No credentials, real ATP data or production seed is committed here.

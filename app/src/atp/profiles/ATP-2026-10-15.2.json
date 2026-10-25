@@ -1,0 +1,135 @@
+{
+    "profile_id":  "ATP-2026-10-15.2",
+    "as_of":  "2026-10-15",
+    "status":  "Entwurf; durch ATP fachlich zu bestätigen",
+    "purpose":  "Versionierter Referenzstand für Leistungsabgleich und ICP-Prüfung; zur Laufzeit kein erneuter Websiteabruf.",
+    "icp":  {
+                "leadership_any_of":  [
+                                          "eigentümergeführt",
+                                          "familiengeführt"
+                                      ],
+                "segment":  "Mittelstand",
+                "employees_total":  {
+                                        "min":  20,
+                                        "max":  3000,
+                                        "inclusive":  true,
+                                        "unit":  "angefragte Unternehmenseinheit",
+                                        "kind":  "published_target_corridor",
+                                        "wording":  "typischerweise",
+                                        "hard_exclusion":  false
+                                    },
+                "excluded_types":  [
+                                       "Konzern",
+                                       "Behörde"
+                                   ],
+                "unknown_policy":  "ungeklärt statt abweichend",
+                "exclusion_policy":  "Konzern oder Behörde als bestätigter Ausschluss für die Neukontakt-Qualifizierung; Bestandsbeziehungen gesondert würdigen."
+            },
+    "routing":  {
+                    "knowledge_workers_approx_threshold":  30,
+                    "below":  "Schulung oder Workshop als Einstieg prüfen",
+                    "at_or_above":  "AI Audit als Einstieg prüfen",
+                    "unknown":  "Klärungsfrage zum passenden Einstieg",
+                    "not_an_icp_cutoff":  true
+                },
+    "services":  [
+                     {
+                         "id":  "entry",
+                         "name":  "Ersteinschätzung und Setup",
+                         "kind":  "Einstieg und Gesprächsformat",
+                         "purpose":  "Ausgangslage und Ziel verstehen; nächsten Schritt bestimmen.",
+                         "typical_problem":  "Unklare Prioritäten oder noch nicht eingegrenzter Bedarf.",
+                         "meeting_types":  [
+                                               "setup"
+                                           ],
+                         "expected_output":  "Geklärter Kontext und begründete nächste Gesprächs- oder Leistungsstufe.",
+                         "source_refs":  [
+                                             "W2"
+                                         ]
+                     },
+                     {
+                         "id":  "audit",
+                         "name":  "AI Audit",
+                         "kind":  "Leistung",
+                         "purpose":  "Prozesse, KI-Potenziale und Voraussetzungen analysieren.",
+                         "typical_problem":  "Viele Ideen, aber keine belastbare Priorisierung nach Aufwand und Nutzen.",
+                         "meeting_types":  [
+                                               "audit_consultation",
+                                               "setup"
+                                           ],
+                         "expected_output":  "Prozessbild, bewertete Chancen und priorisierte Umsetzungs-Roadmap.",
+                         "source_refs":  [
+                                             "W3"
+                                         ]
+                     },
+                     {
+                         "id":  "enablement",
+                         "name":  "AI Enablement",
+                         "kind":  "Leistung",
+                         "purpose":  "Umsetzung mit Kompetenzaufbau und Übergabe an interne Verantwortliche verbinden.",
+                         "typical_problem":  "Pilotprojekte bleiben isoliert oder hängen dauerhaft von Externen ab.",
+                         "meeting_types":  [
+                                               "enablement_consultation",
+                                               "project_review"
+                                           ],
+                         "expected_output":  "Angewandte Lösungen und ein Team, das sie eigenständig weiterentwickeln kann.",
+                         "source_refs":  [
+                                             "W4"
+                                         ]
+                     },
+                     {
+                         "id":  "training",
+                         "name":  "KI Schulungen",
+                         "kind":  "Leistung",
+                         "purpose":  "Rollenbezogene Anwendung an tatsächlichen Arbeitsaufgaben vermitteln.",
+                         "typical_problem":  "Unsicherheit bei Werkzeugen, Prompting und sicherem Einsatz im Alltag.",
+                         "meeting_types":  [
+                                               "setup",
+                                               "enablement_consultation"
+                                           ],
+                         "expected_output":  "Praktische Fähigkeiten und erfasste Anwendungsfelder.",
+                         "source_refs":  [
+                                             "W5"
+                                         ]
+                     },
+                     {
+                         "id":  "workshop",
+                         "name":  "Workshop für Führungskräfte",
+                         "kind":  "Leistung",
+                         "purpose":  "Orientierung und gemeinsame Prioritäten für Entscheidungen schaffen.",
+                         "typical_problem":  "Unterschiedliche Erwartungen im Führungsteam und fehlende Richtung.",
+                         "meeting_types":  [
+                                               "setup",
+                                               "audit_consultation"
+                                           ],
+                         "expected_output":  "Priorisierte Handlungsfelder und nächste Schritte.",
+                         "source_refs":  [
+                                             "W6"
+                                         ]
+                     },
+                     {
+                         "id":  "keynote",
+                         "name":  "Impulse und Keynotes",
+                         "kind":  "Leistung",
+                         "purpose":  "Ein gemeinsames Verständnis von Möglichkeiten und Grenzen von KI schaffen.",
+                         "typical_problem":  "Fehlende Orientierung bei Führung oder Belegschaft.",
+                         "meeting_types":  [
+                                               "setup"
+                                           ],
+                         "expected_output":  "Gemeinsamer Ausgangspunkt für weitere Gespräche.",
+                         "source_refs":  [
+                                             "W2"
+                                         ]
+                     }
+                 ],
+    "source_urls":  [
+                        "https://www.ai-transformation-partners.com/",
+                        "https://www.ai-transformation-partners.com/ki-beratung-mittelstand/",
+                        "https://www.ai-transformation-partners.com/ki-audit/",
+                        "https://www.ai-transformation-partners.com/ki-enablement/",
+                        "https://www.ai-transformation-partners.com/ki-schulung-unternehmen/",
+                        "https://www.ai-transformation-partners.com/ki-workshop-fuehrungskraefte/",
+                        "https://www.ai-transformation-partners.com/kontakt/"
+                    ],
+    "interpretation_note":  "Typische Probleme und Zuordnung zu Meeting-Typen sind redaktionelle Ableitungen für die Vorbereitung, keine zugesagten Kundenergebnisse."
+}

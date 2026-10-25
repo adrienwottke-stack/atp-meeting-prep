@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="Interne ATP Meeting-Vorbereitung: Recherche, belegtes Briefing und Gesprächsentscheidung.">
+  <title>Meeting-Vorbereitung · ATP</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/app.css?v=briefing-reader-1">
+  <script id="app-config" type="application/json">{{ config | tojson }}</script>
+  <script type="module" src="/static/app.js?v=briefing-reader-1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt</a>
+  <header class="app-header">
+    <a class="brand" href="/" aria-label="ATP Startseite"><img src="/static/atp-logo.png" alt="AI Transformation Partners"><span>Meeting-Vorbereitung</span></a>
+    <nav aria-label="Hauptnavigation"><a href="/" data-nav="/">Neue Vorbereitung</a><a href="/history" data-nav="/history">Historie</a>{% if config.memory_enabled %}<a href="/knowledge" data-nav="/knowledge">Wissen & Learnings</a>{% endif %}<a href="/help">Hilfe</a><button class="text-button" id="auth-button" type="button">Anmelden</button></nav>
+  </header>
+  <div id="environment-banner"></div>
+  <div class="notification" id="notification" role="status" aria-live="polite" hidden></div>
+  <nav id="back-navigation" class="back-navigation" aria-label="Zurück-Navigation" hidden></nav>
+  <main id="main" tabindex="-1"></main>
+  <footer class="app-footer"><span>AI Transformation Partners GmbH</span><span>Intern · Vertraulich</span></footer>
+  <noscript><p class="noscript">Bitte JavaScript aktivieren, um Eingaben zu bestätigen und Briefings zu öffnen.</p></noscript>
+</body>
+</html>

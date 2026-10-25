@@ -1,0 +1,60 @@
+name: atp
+x-runtime: &runtime
+  image: atp:${ATP_RELEASE:?ATP_RELEASE must be set}
+  env_file: ./runtime.env
+  restart: unless-stopped
+  init: true
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,size=32m,uid=10001,gid=10001
+    - /app/output:rw,noexec,nosuid,size=32m,uid=10001,gid=10001
+  volumes:
+    - ./supabase-ca.crt:/app/supabase-ca.crt:ro
+  networks: [coolify]
+  logging:
+    driver: json-file
+    options: {max-size: 10m, max-file: "3"}
+services:
+  web:
+    <<: *runtime
+    mem_limit: 256m
+    cpus: 0.5
+    healthcheck:
+      test: [CMD, python, -c, "import json,urllib.request; assert json.load(urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=5))['status']=='ok'"]
+      interval: 30s
+      timeout: 8s
+      retries: 3
+      start_period: 20s
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: coolify
+      traefik.http.middlewares.atp-https.redirectscheme.scheme: https
+      traefik.http.middlewares.atp-https.redirectscheme.permanent: "true"
+      traefik.http.routers.atp-http.entrypoints: http
+      traefik.http.routers.atp-http.rule: Host(`${ATP_HOST:?ATP_HOST must be set}`)
+      traefik.http.routers.atp-http.middlewares: atp-https
+      traefik.http.routers.atp-http.service: atp
+      traefik.http.routers.atp.entrypoints: https
+      traefik.http.routers.atp.rule: Host(`${ATP_HOST:?ATP_HOST must be set}`)
+      traefik.http.routers.atp.service: atp
+      traefik.http.routers.atp.tls: "true"
+      traefik.http.routers.atp.tls.certresolver: letsencrypt
+      traefik.http.services.atp.loadbalancer.server.port: "8000"
+  worker:
+    <<: *runtime
+    command: [python, -m, atp.worker]
+    mem_limit: 512m
+    cpus: 1
+    stop_grace_period: 30s
+  maintenance:
+    <<: *runtime
+    profiles: [maintenance]
+    restart: "no"
+    command: [python, -m, atp.maintenance, --apply]
+    mem_limit: 128m
+    cpus: 0.25
+networks:
+  coolify:
+    external: true

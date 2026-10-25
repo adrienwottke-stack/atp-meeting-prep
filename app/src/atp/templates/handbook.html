@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>So funktioniert ATP · Visuelles Handbuch</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/app.css?v=briefing-reader-1">
+  <link rel="stylesheet" href="/static/handbook.css?v=1">
+  <link rel="stylesheet" href="/static/handbook/pins.css?v=briefing-reader-1">
+  <script src="/static/handbook.js?v=focused-questions-1" defer></script>
+</head>
+<body class="guide-page">
+  <a class="skip-link" href="#main">Zum Inhalt</a>
+  <header class="app-header guide-header">
+    <a class="brand" href="/"><img src="/static/atp-logo.png" alt="AI Transformation Partners"><span>Visuelles Handbuch</span></a>
+    <a class="button secondary" href="/">Zur Anwendung <span aria-hidden="true">↗</span></a>
+  </header>
+  <nav class="back-navigation" aria-label="Zurück-Navigation"><a class="back-link" href="/">← Zurück</a></nav>
+  <main id="main" class="guide" tabindex="-1">
+    <div class="guide-intro">
+      <div><p class="eyebrow">Hilfe · Schritt für Schritt</p>
+        <h1>Ein Blick.<br>Der nächste Klick.</h1>
+        <p>Von der ersten Eingabe zum fertigen Briefing. Such dir den Schritt, bei dem du gerade bist.</p>
+      </div>
+      <div class="guide-route" aria-label="Ablauf"><span>Eingeben</span><b aria-hidden="true">→</b><span>Klären</span><b aria-hidden="true">→</b><span>Vorbereitet ins Gespräch</span></div>
+    </div>
+    <nav class="guide-jumps" aria-label="Schritt auswählen">
+      {% for step in steps %}<a href="#{{ step.id }}"><b>0{{ loop.index }}</b> {{ step.nav }}</a>{% endfor %}
+      {% if memory_enabled %}<a href="#wissen">Wissen & Learnings</a>{% endif %}
+      <a href="#fragen">Kurze Antworten</a>
+    </nav>
+    <p class="guide-example">Die Screenshots zeigen die ATP-Oberfläche mit erfundenen Beispieldaten. Zum Vergrößern auf ein Bild klicken.</p>
+    {% macro shot(name, alt, pins) %}
+      <figure class="guide-shot">
+        <a href="/static/handbook/{{ name }}.webp?v=briefing-reader-1" class="guide-image-link" data-enlarge aria-label="Screenshot vergrößern: {{ alt }}">
+          <img src="/static/handbook/{{ name }}.webp?v=briefing-reader-1" width="1120" height="760" alt="{{ alt }}" loading="lazy">
+          {% for number, position in pins %}<span class="guide-pin pin-{{ position }}" aria-hidden="true">{{ number }}</span>{% endfor %}
+          <span class="guide-zoom" aria-hidden="true">↗ Vergrößern</span>
+        </a>
+        <figcaption>{{ alt }}</figcaption>
+      </figure>
+    {% endmacro %}
+    {% for step in steps %}
+    <section id="{{ step.id }}" class="guide-step">
+      <div class="guide-step-title"><span class="guide-number">0{{ loop.index }}</span><div><p class="eyebrow">{{ step.area }}</p><h2>{{ step.title }}</h2><p>{{ step.intro }}</p></div></div>
+      <div class="guide-step-body">
+        {{ shot(step.image, step.caption, step.pins) }}
+        <ol class="guide-notes">{% for title, text in step.notes %}<li><b>{{ title }}</b><p>{{ text }}</p></li>{% endfor %}</ol>
+      </div>
+      {% if step.tip %}<details class="guide-tip"><summary>{{ step.tip_title }}</summary><p>{{ step.tip }}</p></details>{% endif %}
+      {% if step.id == 'briefing' %}<details class="guide-tip"><summary>Wo steht die fachliche Verwendbarkeit?</summary><p>Öffne im Briefing „Quellen & Recherchegrenzen“. Die Recherchehinweise zeigen, welche Einschränkungen du beim Lesen berücksichtigen solltest.</p>{{ shot('qualitaet', 'Recherchehinweise unter „Quellen & Recherchegrenzen“.', []) }}</details>{% endif %}
+      {% if step.takeaway %}<p class="guide-takeaway">{{ step.takeaway }}</p>{% endif %}
+    </section>
+    {% endfor %}
+    {% if memory_enabled %}
+    <section id="wissen" class="guide-step guide-extra">
+      <p class="eyebrow">Optional · Wissen & Learnings</p><h2>Gute Erkenntnisse wiederverwenden.</h2><p>Diese Funktionen siehst du, wenn sie für deinen Zugang freigeschaltet sind.</p>
+      <div class="guide-step-body">{{ shot('wissen', 'Wissen & Learnings: Kontexte anlegen und bestätigte Erkenntnisse sammeln.', []) }}<div class="guide-extra-notes"><h3>Wissen & Learnings</h3><p>Lege einen Kontext für ein Unternehmen oder Projekt an. Ergänze Erkenntnis, Herkunft und fachlichen Stand. Bestätige nur Inhalte, die künftig verwendet werden dürfen.</p><p>Bei einer neuen Vorbereitung kannst du bis zu zwei Firmen- oder Projektkontexte auswählen. Berechtigte allgemeine Learnings werden zusätzlich berücksichtigt.</p></div></div>
+    </section>
+    {% endif %}
+    <section id="fragen" class="guide-faq">
+      <p class="eyebrow">Wenn du gerade festhängst</p><h2>Kurze Frage. Klare Antwort.</h2>
+      {% for question, answer in faq %}<details><summary>{{ question }}</summary><p>{{ answer }}</p></details>{% endfor %}
+    </section>
+    <section class="guide-reference"><p class="eyebrow">Zum Nachschlagen</p><h2>Mehr Details, wenn du sie brauchst.</h2>
+      {% for chapter in references %}<details><summary>{{ chapter.title }}</summary><div class="guide-reference-body">{{ chapter.body | safe }}</div></details>{% endfor %}
+      {% if operator %}<a class="button secondary" href="/v1/handbook/pdf">Vollständiges Betriebshandbuch als PDF</a>{% endif %}
+    </section>
+    <div class="guide-finish"><div><h2>Bereit fürs nächste Gespräch?</h2><p>Firma, Ansprechpartner, Anlass. Damit fängt’s an.</p></div><a href="/" class="button">Neue Vorbereitung <span aria-hidden="true">→</span></a></div>
+  </main>
+  <footer class="app-footer"><span>AI Transformation Partners GmbH</span><span>Intern · Vertraulich</span></footer>
+  <dialog class="guide-lightbox" aria-labelledby="screenshot-title"><div class="guide-lightbox-bar"><p id="screenshot-title"></p><button type="button" class="button secondary" data-close>Schließen <span aria-hidden="true">×</span></button></div><p class="guide-pan-hint">Auf kleinen Bildschirmen kannst du das vergrößerte Bild seitlich verschieben.</p><div class="guide-lightbox-stage" tabindex="0" aria-label="Vergrößerter Screenshot, seitlich verschiebbar"><div class="guide-lightbox-image"><img alt=""></div></div></dialog>
+</body>
+</html>

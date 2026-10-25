@@ -1,0 +1,28 @@
+[project]
+name = "atp-meeting-preparation"
+version = "0.1.0"
+description = "Interne ATP Meeting-Vorbereitung"
+requires-python = ">=3.13"
+dependencies = [
+  "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic>=2.10,<3",
+  "pydantic-settings>=2.7,<3", "jinja2>=3.1,<4", "python-multipart>=0.0.20,<1",
+  "httpx>=0.28,<1", "openai>=2,<3", "psycopg[binary]>=3.2,<4",
+  "pyjwt[crypto]>=2.10,<3", "reportlab>=4.3,<5", "beautifulsoup4>=4.13,<5",
+  "python-dotenv>=1,<2", "tzdata>=2026.1", "pymupdf>=1.25,<2"
+]
+[dependency-groups]
+dev = ["pytest>=8,<10", "pytest-asyncio>=0.25,<2", "pymupdf>=1.25,<2", "ruff>=0.11,<1", "playwright>=1.50,<2"]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+[tool.hatch.build.targets.wheel]
+packages = ["src/atp"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+[tool.ruff]
+line-length = 110
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "B"]
+# FastAPI dependency injection intentionally uses Depends in defaults.
+ignore = ["B008"]
