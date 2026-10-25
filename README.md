@@ -1,6 +1,6 @@
 # ATP Meeting Preparation
 
-[Alle öffentlichen Arbeitsproben im Überblick](https://github.com/adrienwottke-stack/engine-playground/blob/main/PORTFOLIO.md)
+[Alle öffentlichen Arbeitsproben im Überblick](https://github.com/adrienwottke-stack/project-portfolio)
 Anwendung für quellenbasierte Firmenrecherche und strukturierte Gesprächsvorbereitung mit Web-, PDF- und HTML-Ausgabe.
 
 ## Projekt und Beitrag
